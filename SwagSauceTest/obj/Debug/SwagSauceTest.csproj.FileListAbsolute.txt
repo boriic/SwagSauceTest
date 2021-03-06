@@ -1,0 +1,7 @@
+C:\Users\Filip\source\repos\SwagSauceTest\SwagSauceTest\bin\Debug\SwagSauceTest.exe.config
+C:\Users\Filip\source\repos\SwagSauceTest\SwagSauceTest\bin\Debug\SwagSauceTest.exe
+C:\Users\Filip\source\repos\SwagSauceTest\SwagSauceTest\bin\Debug\SwagSauceTest.pdb
+C:\Users\Filip\source\repos\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.csprojAssemblyReference.cache
+C:\Users\Filip\source\repos\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.csproj.CoreCompileInputs.cache
+C:\Users\Filip\source\repos\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.exe
+C:\Users\Filip\source\repos\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.pdb
