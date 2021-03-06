@@ -33,6 +33,8 @@ namespace SwagSauceTest.PageObjects
                 burgerButton.Click();
                 System.Threading.Thread.Sleep(2000);
                 logOut.Click();
+                var loggedOut = _driver.FindElement(By.Id("login-button")).GetAttribute("value");
+                Assert.AreEqual(loggedOut, "LOGIN");
             }
             return new MainPageObject(_driver);       
         }
