@@ -16,26 +16,6 @@ namespace SwagSauceTest
         static void Main(string[] args)
         {
         }
-        [SetUp]
-        public void Initialize()
-        {
-            //Navigate to login page
-            driver.Navigate().GoToUrl("https://www.saucedemo.com/");
-        }
-        [Test]
-        public void ExecuteTest()
-        {
-            //Initializing LoginPageObject
-            LoginPageObject loginPageObject = new LoginPageObject(driver);
-            //Initializing MainPageObject
-            MainPageObject mainPageObject = loginPageObject.Login("standard_user", "secret_sauce");
-            
-        }
-        [TearDown]
-        public void Cleanup()
-        {
-            //Closing chrome
-            driver.Close();
-        }
+        
     }
 }
