@@ -12,7 +12,6 @@ namespace SwagSauceTest
 {
     class Program
     {
-        IWebDriver driver = new ChromeDriver();
         static void Main(string[] args)
         {
         }
