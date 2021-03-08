@@ -13,7 +13,7 @@ namespace SwagSauceTest.Tests
     [TestFixture]
     class LoginPageTest
     {
-        IWebDriver driver = new ChromeDriver();     
+        IWebDriver driver = new ChromeDriver();
         [TestFixtureSetUp]
         public void Initialize()
         {
@@ -21,60 +21,18 @@ namespace SwagSauceTest.Tests
             driver.Navigate().GoToUrl("https://www.saucedemo.com/");
         }
         [Test]
-        public void ValidLogin()
+        public void VerifyAllLoginSituations()
         {
             //Initializing LoginPageObject
             LoginPageObject loginPageObject = new LoginPageObject(driver);
+            //Inserting verify methods
             loginPageObject.VerifyValidLogin("standard_user", "secret_sauce", true);
-
-        }
-        [Test]
-        public void InvalidLogin()
-        {
-            //Initializing LoginPageObject
-            LoginPageObject loginPageObject = new LoginPageObject(driver);
             loginPageObject.VerifyInvalidLogin("krivi", "podatci");
-            driver.Navigate().Refresh();
-        }
-        [Test]
-        public void VerifyLoginWithUsernameOnly()
-        {
-            //Initializing LoginPageObject
-            LoginPageObject loginPageObject = new LoginPageObject(driver);
             loginPageObject.VerifyLoginWithUsernameOnly("standard_user");
-            driver.Navigate().Refresh();
-        }
-        [Test]
-        public void VerifyLoginWithPasswordOnly()
-        {
-            //Initializing LoginPageObject
-            LoginPageObject loginPageObject = new LoginPageObject(driver);
             loginPageObject.VerifyLoginWithPasswordOnly("secret_sauce");
-            driver.Navigate().Refresh();
-        }
-        [Test]
-        public void VerifyLoginWithWrongUsername()
-        {
-            //Initializing LoginPageObject
-            LoginPageObject loginPageObject = new LoginPageObject(driver);
             loginPageObject.VerifyLoginWithWrongUsername("krivi_username", "secret_sauce");
-            driver.Navigate().Refresh();
-        }
-        [Test]
-        public void VerifyLoginWithWrongPassword()
-        {
-            //Initializing LoginPageObject
-            LoginPageObject loginPageObject = new LoginPageObject(driver);
             loginPageObject.VerifyLoginWithWrongPassword("standard_user", "kriva_sifra");
-            driver.Navigate().Refresh();
-        }
-        [Test]
-        public void LoginWithoutInfo()
-        {
-            //Initializing LoginPageObject
-            LoginPageObject loginPageObject = new LoginPageObject(driver);
             loginPageObject.VerifyLoginWithoutAnyInfo();
-            driver.Navigate().Refresh();
         }
         [TestFixtureTearDown]
         public void Cleanup()
