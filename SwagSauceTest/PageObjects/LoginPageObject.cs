@@ -21,7 +21,7 @@ namespace SwagSauceTest.PageObjects
         public IWebElement logOut => _driver.FindElement(By.Id("logout_sidebar_link"));
 
 
-        public MainPageObject VerifyValidLogin(string userName, string password, bool isTestingLogin)
+        public MainPageObject ValidLogin(string userName, string password, bool isTestingLogin)
         {
             txtForUserNameField.EnterText(userName);
             txtForPasswordField.EnterText(password);
@@ -38,7 +38,7 @@ namespace SwagSauceTest.PageObjects
             }
             return new MainPageObject(_driver);       
         }
-        public void VerifyInvalidLogin(string userName, string password)
+        public void InvalidLogin(string userName, string password)
         {
             txtForUserNameField.EnterText(userName);
             txtForPasswordField.EnterText(password);
@@ -47,14 +47,14 @@ namespace SwagSauceTest.PageObjects
             Assert.AreEqual(errorText.Text, "Epic sadface: Username and password do not match any user in this service");
             _driver.Navigate().Refresh();
         }
-        public void VerifyLoginWithoutAnyInfo()
+        public void LoginWithoutAnyInfo()
         {
             btnLogin.Submit();
             var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
             Assert.AreEqual(errorText.Text, "Epic sadface: Username is required");
             _driver.Navigate().Refresh();
         }
-        public void VerifyLoginWithUsernameOnly(string userName)
+        public void LoginWithUsernameOnly(string userName)
         {
             txtForUserNameField.EnterText(userName);
             btnLogin.Submit();
@@ -62,7 +62,7 @@ namespace SwagSauceTest.PageObjects
             Assert.AreEqual(errorText.Text, "Epic sadface: Password is required");
             _driver.Navigate().Refresh();
         }
-        public void VerifyLoginWithPasswordOnly(string password)
+        public void LoginWithPasswordOnly(string password)
         {
             txtForPasswordField.EnterText(password);
             btnLogin.Submit();
@@ -70,7 +70,7 @@ namespace SwagSauceTest.PageObjects
             Assert.AreEqual(errorText.Text, "Epic sadface: Username is required");
             _driver.Navigate().Refresh();
         }
-        public void VerifyLoginWithWrongUsername(string userName, string password)
+        public void LoginWithWrongUsername(string userName, string password)
         {
             txtForUserNameField.EnterText(userName);
             txtForPasswordField.EnterText(password);
@@ -79,7 +79,7 @@ namespace SwagSauceTest.PageObjects
             Assert.AreEqual(errorText.Text, "Epic sadface: Username and password do not match any user in this service");
             _driver.Navigate().Refresh();
         }
-        public void VerifyLoginWithWrongPassword(string userName, string password)
+        public void LoginWithWrongPassword(string userName, string password)
         {
             txtForUserNameField.EnterText(userName);
             txtForPasswordField.EnterText(password);

@@ -11,9 +11,10 @@ using System.Threading.Tasks;
 namespace SwagSauceTest.Tests
 {
     [TestFixture]
-    class LoginPageTest
+    class MainPageTest
     {
         readonly IWebDriver driver = new ChromeDriver();
+
         [TestFixtureSetUp]
         public void Initialize()
         {
@@ -21,18 +22,15 @@ namespace SwagSauceTest.Tests
             driver.Navigate().GoToUrl("https://www.saucedemo.com/");
         }
         [Test]
-        public void VerifyAllLoginSituations()
+        public void TestAllOnMainPage()
         {
-            //Initializing LoginPageObject
+            //Initializing LoginPageObject and MainPageObject
             LoginPageObject loginPageObject = new LoginPageObject(driver);
-            //Inserting verify methods
-            loginPageObject.ValidLogin("standard_user", "secret_sauce", true);
-            loginPageObject.InvalidLogin("krivi", "podatci");
-            loginPageObject.LoginWithUsernameOnly("standard_user");
-            loginPageObject.LoginWithPasswordOnly("secret_sauce");
-            loginPageObject.LoginWithWrongUsername("krivi_username", "secret_sauce");
-            loginPageObject.LoginWithWrongPassword("standard_user", "kriva_sifra");
-            loginPageObject.LoginWithoutAnyInfo();
+            MainPageObject mainPageObject = new MainPageObject(driver);
+            loginPageObject.ValidLogin("standard_user", "secret_sauce", false);
+            mainPageObject.AddProductAtIndexOf(1);
+            mainPageObject.RemoveProductAtIndexOf(1);
+            mainPageObject.AddAllProducts();
         }
         [TestFixtureTearDown]
         public void Cleanup()

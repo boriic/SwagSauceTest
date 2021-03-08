@@ -8,18 +8,8 @@ using System.Threading.Tasks;
 
 namespace SwagSauceTest.Methods
 {
-    public static class SwagSauceSetMethods
+    public static class MainPageSetMethods
     {
-        /// <summary>
-        /// Method used when entering text in to a text field
-        /// </summary>
-        /// <param name="element"></param>
-        /// <param name="value"></param>
-        //
-        public static void EnterText(this IWebElement element, string value)
-        {
-            element.SendKeys(value);
-        }
         /// <summary>
         /// Method used for clicking a button, checkbox, option etc
         /// </summary>
