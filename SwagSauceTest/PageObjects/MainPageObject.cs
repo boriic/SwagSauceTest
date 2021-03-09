@@ -16,8 +16,7 @@ namespace SwagSauceTest.PageObjects
         public IWebElement addProducts => _driver.FindElement(By.XPath("//*[@id='inventory_container']/div/div[1]/div[3]/button"));
         public List<IWebElement> listAllProducts => _driver.FindElements(By.ClassName("inventory_item")).ToList();
         public IWebElement removeProduct => _driver.FindElement(By.ClassName("btn_secondary.btn_inventory"));
-        public IWebElement changeFilter => _driver.FindElement(By.Id("shopping_cart_container"));
-        public IWebElement goToCheckout => _driver.FindElement(By.ClassName("svg-inline--fa.fa-shopping-cart.fa-w-18.fa-3x "));
+        public IWebElement changeFilter => _driver.FindElement(By.ClassName("product_sort_container"));
 
         public void AddAllProducts()
         {
@@ -78,12 +77,14 @@ namespace SwagSauceTest.PageObjects
         }
         public void ChangeFilter(string value)
         {
-            changeFilter.SelectFilter(value);
+            var currentFilterValue = _driver.FindElement(By.XPath("//*[@id='inventory_filter_container']/select/option[1]")).GetAttribute("value");
+            if (value != currentFilterValue)
+            {
+                var productsBeforeFilter = listAllProducts;
+                changeFilter.SelectFilter(value);
+                var productsAfterFilter = listAllProducts;
+                Assert.AreNotEqual(productsBeforeFilter[0], productsAfterFilter[0]);
+            }      
         }
-        public void GoToCheckout()
-        {
-            goToCheckout.Click();
-        }
-
     }
 }

@@ -25,7 +25,7 @@ namespace SwagSauceTest.Methods
         /// <param name="value"></param>
         public static void SelectFilter(this IWebElement element, string value)
         {
-            new SelectElement(element).SelectByText(value);
+            new SelectElement(element).SelectByValue(value);
         }
     }
 }

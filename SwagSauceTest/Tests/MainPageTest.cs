@@ -31,6 +31,7 @@ namespace SwagSauceTest.Tests
             mainPageObject.AddProductAtIndexOf(1);
             mainPageObject.RemoveProductAtIndexOf(1);
             mainPageObject.AddAllProducts();
+            mainPageObject.ChangeFilter("az");
         }
         [TestFixtureTearDown]
         public void Cleanup()
