@@ -9,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace SwagSauceTest.PageObjects
 {
-    class LoginPageObject
+    public class LoginPageObject
     {
         private readonly IWebDriver _driver;
         public LoginPageObject(IWebDriver driver) => _driver = driver;
+
+        //UI ELEMENTS
         public IWebElement txtForUserNameField => _driver.FindElement(By.Name("user-name"));
         public IWebElement txtForPasswordField => _driver.FindElement(By.Name("password"));
 
@@ -21,22 +23,28 @@ namespace SwagSauceTest.PageObjects
         public IWebElement logOut => _driver.FindElement(By.Id("logout_sidebar_link"));
 
 
-        public MainPageObject ValidLogin(string userName, string password, bool isTestingLogin)
+        public MainPageObject Login(string userName, string password)
         {
             txtForUserNameField.EnterText(userName);
             txtForPasswordField.EnterText(password);
+            return new MainPageObject(_driver);
+        }
+        public void ClickLogin()
+        {
             btnLogin.Submit();
+        }
+        public void TestIfLoginPassed ()
+        {
             var loggedInTitle = _driver.FindElement(By.XPath("//*[@id='inventory_filter_container']/div")).GetAttribute("innerHTML");
             Assert.AreEqual(loggedInTitle, "Products");
-            if (isTestingLogin)
-            {
-                burgerButton.Click();
-                System.Threading.Thread.Sleep(1000);
-                logOut.Click();
-                var loggedOut = _driver.FindElement(By.Id("login-button")).GetAttribute("value");
-                Assert.AreEqual(loggedOut, "LOGIN");
-            }
-            return new MainPageObject(_driver);       
+            //if (!isTestingLogin)
+            //{
+            //    burgerButton.Click();
+            //    System.Threading.Thread.Sleep(1000);
+            //    logOut.Click();
+            //    var loggedOut = _driver.FindElement(By.Id("login-button")).GetAttribute("value");
+            //    Assert.AreEqual(loggedOut, "LOGIN");
+            //}
         }
         public void InvalidLogin(string userName, string password)
         {

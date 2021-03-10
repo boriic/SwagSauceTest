@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SwagSauceTest.PageObjects
 {
-    class MainPageObject
+    public class MainPageObject
     {
         private readonly IWebDriver _driver;
         public MainPageObject(IWebDriver driver) => _driver = driver;
@@ -84,7 +84,7 @@ namespace SwagSauceTest.PageObjects
                 changeFilter.SelectFilter(value);
                 var productsAfterFilter = listAllProducts;
                 Assert.AreNotEqual(productsBeforeFilter[0], productsAfterFilter[0]);
-            }      
+            }
         }
     }
 }
