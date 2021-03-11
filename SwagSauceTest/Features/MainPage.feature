@@ -18,16 +18,16 @@ Scenario: Pressing remove button on the first product
 Scenario: Pressing filter Z-A
 	Given I sucessfully login and redirected to the product list page
 	And I press the option Z-A on the filter dropdown list
-	Then Products should be filtered by that option
+	Then Products should be filtered by Z-A option
 
 @filterHI-LO
 Scenario: Pressing filter HI-LO
 	Given I sucessfully login and redirected to the product list page
 	And I press the option HI-LO on the filter dropdown list
-	Then Products should be filtered by that option
+	Then Products should be filtered by HI-LO option
 
 @filterLO-HI
 Scenario: Pressing filter LO-HI
 	Given I sucessfully login and redirected to the product list page
 	And I press the option LO-HI on the filter dropdown list
-	Then Products should be filtered by that option
+	Then Products should be filtered by LO-HI option

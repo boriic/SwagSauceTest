@@ -63,26 +63,41 @@ namespace SwagSauceTest.Steps
         [Given(@"I press the option Z-A on the filter dropdown list")]
         public void GivenIPressTheOptionZ_AOnTheFilterDropdownList()
         {
-            ScenarioContext.Current.Pending();
-        }
-
-        [Then(@"Products should be filtered by that option")]
-        public void ThenProductsShouldBeFilteredByThatOption()
-        {
-            ScenarioContext.Current.Pending();
+            _contexts.mainPageObject.ChangeFilter("za");
         }
 
         [Given(@"I press the option HI-LO on the filter dropdown list")]
         public void GivenIPressTheOptionHI_LOOnTheFilterDropdownList()
         {
-            ScenarioContext.Current.Pending();
+            _contexts.mainPageObject.ChangeFilter("hilo");
         }
 
         [Given(@"I press the option LO-HI on the filter dropdown list")]
         public void GivenIPressTheOptionLO_HIOnTheFilterDropdownList()
         {
-            ScenarioContext.Current.Pending();
+            _contexts.mainPageObject.ChangeFilter("lohi");
         }
+        [Then(@"Products should be filtered by Z-A option")]
+        public void ThenProductsShouldBeFilteredByZ_AOption()
+        {
+            _contexts.mainPageObject.CheckIfPageFiltered("za");
+            Dispose();
+        }
+
+        [Then(@"Products should be filtered by HI-LO option")]
+        public void ThenProductsShouldBeFilteredByHI_LOOption()
+        {
+            _contexts.mainPageObject.CheckIfPageFiltered("hilo");
+            Dispose();
+        }
+
+        [Then(@"Products should be filtered by LO-HI option")]
+        public void ThenProductsShouldBeFilteredByLO_HIOption()
+        {
+            _contexts.mainPageObject.CheckIfPageFiltered("lohi");
+            Dispose();
+        }
+
 
         public void Dispose()
         {

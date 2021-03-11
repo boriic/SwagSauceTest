@@ -20,13 +20,5 @@ namespace SwagSauceTest.Methods
         {
             element.SendKeys(value);
         }
-        /// <summary>
-        /// Method used for clicking a button, checkbox, option etc
-        /// </summary>
-        /// <param name="element"></param>
-        public static void Click(this IWebElement element)
-        {
-            element.Click();
-        }
     }
 }

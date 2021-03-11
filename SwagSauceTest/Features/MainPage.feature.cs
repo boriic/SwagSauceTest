@@ -197,7 +197,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I press the option Z-A on the filter dropdown list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 21
- testRunner.Then("Products should be filtered by that option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Products should be filtered by Z-A option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -239,7 +239,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I press the option HI-LO on the filter dropdown list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 27
- testRunner.Then("Products should be filtered by that option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Products should be filtered by HI-LO option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -281,7 +281,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.And("I press the option LO-HI on the filter dropdown list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 33
- testRunner.Then("Products should be filtered by that option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("Products should be filtered by LO-HI option", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();

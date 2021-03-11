@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SwagSauceTest.Messages;
 using SwagSauceTest.Methods;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace SwagSauceTest.PageObjects
     {
         private readonly IWebDriver _driver;
         public LoginPageObject(IWebDriver driver) => _driver = driver;
+        public Message Message = new Message();
 
         //UI ELEMENTS
         public IWebElement txtForUserNameField => _driver.FindElement(By.Name("user-name"));
@@ -21,7 +23,6 @@ namespace SwagSauceTest.PageObjects
         public IWebElement btnLogin => _driver.FindElement(By.Id("login-button"));
         public IWebElement burgerButton => _driver.FindElement(By.Id("react-burger-menu-btn"));
         public IWebElement logOut => _driver.FindElement(By.Id("logout_sidebar_link"));
-
 
         public MainPageObject Login(string userName, string password)
         {
@@ -36,35 +37,35 @@ namespace SwagSauceTest.PageObjects
         public void TestIfLoginPassed ()
         {
             var loggedInTitle = _driver.FindElement(By.XPath("//*[@id='inventory_filter_container']/div")).GetAttribute("innerHTML");
-            Assert.AreEqual(loggedInTitle, "Products");
+            Assert.AreEqual(loggedInTitle, Message.Products);
         }
         public void LogOut()
         {
             var loggedInTitle = _driver.FindElement(By.XPath("//*[@id='inventory_filter_container']/div")).GetAttribute("innerHTML");
 
-            if (loggedInTitle == "Products")
+            if (loggedInTitle == Message.Products)
             {
                 burgerButton.Click();
                 Task.Delay(1000).Wait();
                 logOut.Click();
                 var loggedOut = _driver.FindElement(By.Id("login-button")).GetAttribute("value");
-                Assert.AreEqual(loggedOut, "LOGIN");
+                Assert.AreEqual(loggedOut, Message.Login);
             }        
         }
-        public void LoginWithWrongInformation()
+        public void LoginWithWrongInformationError()
         {
             var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
-            Assert.AreEqual(errorText.Text, "Epic sadface: Username and password do not match any user in this service");
+            Assert.AreEqual(errorText.Text, Message.WrongInfoLoginError);
         }
-        public void LoginWithWrongPassword()
+        public void LoginWithWrongPasswordError()
         {
             var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
-            Assert.AreEqual(errorText.Text, "Epic sadface: Password is required");
+            Assert.AreEqual(errorText.Text, Message.NoPasswordLoginError);
         }
-        public void LoginWithoutAnyInfoErrorMsg()
+        public void LoginWithoutAnyInfoErrorMsgError()
         {
             var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
-            Assert.AreEqual(errorText.Text, "Epic sadface: Username is required");
+            Assert.AreEqual(errorText.Text, Message.NoInfoLoginError);
         }
     }
 }

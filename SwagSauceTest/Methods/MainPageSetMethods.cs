@@ -11,14 +11,6 @@ namespace SwagSauceTest.Methods
     public static class MainPageSetMethods
     {
         /// <summary>
-        /// Method used for clicking a button, checkbox, option etc
-        /// </summary>
-        /// <param name="element"></param>
-        public static void Click(this IWebElement element)
-        {
-            element.Click();
-        }
-        /// <summary>
         /// Selecting value in dropdown
         /// </summary>
         /// <param name="element"></param>

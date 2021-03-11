@@ -46,7 +46,7 @@ namespace SwagSauceTest.Steps
         [Then(@"I should see the Password is required error message")]
         public void WrongPassword()
         {
-            _contexts.loginPageObject.LoginWithWrongPassword();
+            _contexts.loginPageObject.LoginWithWrongPasswordError();
             Dispose();
         }
 
@@ -58,7 +58,7 @@ namespace SwagSauceTest.Steps
         [Then(@"I should see the Username and password do not match any user in this service error message")]
         public void WrongInformation()
         {
-            _contexts.loginPageObject.LoginWithWrongInformation();
+            _contexts.loginPageObject.LoginWithWrongInformationError();
             Dispose();
         }
 
@@ -66,7 +66,7 @@ namespace SwagSauceTest.Steps
         [Then(@"I should see the Username is required error message")]
         public void NoInformation()
         {
-            _contexts.loginPageObject.LoginWithoutAnyInfoErrorMsg();
+            _contexts.loginPageObject.LoginWithoutAnyInfoErrorMsgError();
             Dispose();
         }
 

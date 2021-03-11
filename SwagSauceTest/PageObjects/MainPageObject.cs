@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using SwagSauceTest.Messages;
 using SwagSauceTest.Methods;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,10 @@ namespace SwagSauceTest.PageObjects
     public class MainPageObject
     {
         private readonly IWebDriver _driver;
+        public Message Message = new Message();
         public MainPageObject(IWebDriver driver) => _driver = driver;
         public IWebElement addProducts => _driver.FindElement(By.XPath("//*[@id='inventory_container']/div/div[1]/div[3]/button"));
         public List<IWebElement> listAllProducts => _driver.FindElements(By.ClassName("inventory_item")).ToList();
-        public IWebElement removeProduct => _driver.FindElement(By.ClassName("btn_secondary.btn_inventory"));
         public IWebElement changeFilter => _driver.FindElement(By.ClassName("product_sort_container"));
 
         public void RedirectedToProductList()
@@ -23,14 +24,14 @@ namespace SwagSauceTest.PageObjects
             bool areProductsVisible = _driver.FindElement(By.Id("inventory_container")).Displayed;
             Assert.IsTrue(areProductsVisible);
         }
-        public void AddAllProducts()
-        {
-            var numberOfProducts = listAllProducts.Count;
-            for (int i = 0; i < numberOfProducts; i++)
-            {
-                AddProductAtIndexOf(i);
-            }
-        }
+        //public void AddAllProducts()
+        //{
+        //    var numberOfProducts = listAllProducts.Count;
+        //    for (int i = 0; i < numberOfProducts; i++)
+        //    {
+        //        AddProductAtIndexOf(i);
+        //    }
+        //}
         public void AddProductAtIndexOf(int index)
         {
             var numberOfProducts = listAllProducts.Count;
@@ -38,14 +39,14 @@ namespace SwagSauceTest.PageObjects
             {
                 IWebElement productButton = listAllProducts[index].FindElement(By.ClassName("btn_inventory"));
                 var buttonTitle = productButton.Text;
-                if (buttonTitle == "ADD TO CART")
+                if (buttonTitle == Message.AddToCart)
                 {
                     productButton.Click();
                     Task.Delay(500).Wait();
                     var cartNumber = int.Parse(_driver.FindElement(By.XPath("//*[@id='shopping_cart_container']/a/span")).Text);
                     if (cartNumber > 0)
                     {
-                        Assert.AreEqual(productButton.Text, "REMOVE");
+                        Assert.AreEqual(productButton.Text, Message.RemoveFromCart);
                     }
                 }
             }
@@ -59,7 +60,7 @@ namespace SwagSauceTest.PageObjects
                 var buttonTitle = productButton.Text;
                 var cartNumber = int.Parse(_driver.FindElement(By.XPath("//*[@id='shopping_cart_container']/a/span")).Text);
                 var isCartUpdated = cartNumber > 0 ? true : false;
-                Assert.AreEqual(buttonTitle, "REMOVE");
+                Assert.AreEqual(buttonTitle, Message.RemoveFromCart);
                 Assert.IsTrue(isCartUpdated);
 
             }
@@ -81,7 +82,7 @@ namespace SwagSauceTest.PageObjects
                 {
                     isCartNumberDisplayed = false;
                 }
-                Assert.AreEqual(buttonTitle, "ADD TO CART");
+                Assert.AreEqual(buttonTitle, Message.AddToCart);
                 Assert.IsFalse(isCartNumberDisplayed);
             }
         }
@@ -102,21 +103,17 @@ namespace SwagSauceTest.PageObjects
             {
                 IWebElement productButton = listAllProducts[index].FindElement(By.ClassName("btn_inventory"));
                 var buttonTitle = productButton.Text;
-                if (buttonTitle == "REMOVE")
+                if (buttonTitle == Message.RemoveFromCart)
                 {
                     productButton.Click();
-                    Assert.AreEqual(productButton.Text, "ADD TO CART");
+                    Assert.AreEqual(productButton.Text, Message.AddToCart);
                 }
             }
 
         }
-        public void RemoveProduct()
-        {
-            removeProduct.Click();
-        }
         public void ChangeFilter(string value)
         {
-            var currentFilterValue = _driver.FindElement(By.XPath("//*[@id='inventory_filter_container']/select/option[1]")).GetAttribute("value");
+            var currentFilterValue = _driver.FindElement(By.ClassName("product_sort_container")).GetAttribute("value");
             if (value != currentFilterValue)
             {
                 var productsBeforeFilter = listAllProducts;
@@ -124,6 +121,11 @@ namespace SwagSauceTest.PageObjects
                 var productsAfterFilter = listAllProducts;
                 Assert.AreNotEqual(productsBeforeFilter[0], productsAfterFilter[0]);
             }
+        }
+        public void CheckIfPageFiltered(string value)
+        {
+            var currentFilterValue = _driver.FindElement(By.ClassName("product_sort_container")).GetAttribute("value");
+            Assert.AreEqual(value, currentFilterValue);
         }
     }
 }

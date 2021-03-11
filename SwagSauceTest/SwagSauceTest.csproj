@@ -94,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\Contexts.cs" />
+    <Compile Include="Messages\Message.cs" />
     <Compile Include="Methods\LoginPageSetMethods.cs" />
     <Compile Include="Methods\MainPageSetMethods.cs" />
     <Compile Include="PageObjects\LoginPageObject.cs" />
