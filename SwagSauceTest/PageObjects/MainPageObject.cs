@@ -18,6 +18,11 @@ namespace SwagSauceTest.PageObjects
         public IWebElement removeProduct => _driver.FindElement(By.ClassName("btn_secondary.btn_inventory"));
         public IWebElement changeFilter => _driver.FindElement(By.ClassName("product_sort_container"));
 
+        public void RedirectedToProductList()
+        {
+            bool areProductsVisible = _driver.FindElement(By.Id("inventory_container")).Displayed;
+            Assert.IsTrue(areProductsVisible);
+        }
         public void AddAllProducts()
         {
             var numberOfProducts = listAllProducts.Count;
@@ -36,7 +41,7 @@ namespace SwagSauceTest.PageObjects
                 if (buttonTitle == "ADD TO CART")
                 {
                     productButton.Click();
-                    System.Threading.Thread.Sleep(500);
+                    Task.Delay(500).Wait();
                     var cartNumber = int.Parse(_driver.FindElement(By.XPath("//*[@id='shopping_cart_container']/a/span")).Text);
                     if (cartNumber > 0)
                     {
@@ -44,7 +49,41 @@ namespace SwagSauceTest.PageObjects
                     }
                 }
             }
+        }
+        public void ButtonTextRemoveAndCartUpdated(int index)
+        {
+            var numberOfProducts = listAllProducts.Count;
+            if (index >= 0 && index <= numberOfProducts)
+            {
+                IWebElement productButton = listAllProducts[index].FindElement(By.ClassName("btn_inventory"));
+                var buttonTitle = productButton.Text;
+                var cartNumber = int.Parse(_driver.FindElement(By.XPath("//*[@id='shopping_cart_container']/a/span")).Text);
+                var isCartUpdated = cartNumber > 0 ? true : false;
+                Assert.AreEqual(buttonTitle, "REMOVE");
+                Assert.IsTrue(isCartUpdated);
 
+            }
+        }
+        public void ButtonTextADDTOCARTAndCartUpdated(int index)
+        {
+            var numberOfProducts = listAllProducts.Count;
+            if (index >= 0 && index <= numberOfProducts)
+            {
+                IWebElement productButton = listAllProducts[index].FindElement(By.ClassName("btn_inventory"));
+                var buttonTitle = productButton.Text;
+                bool isCartNumberDisplayed;
+                try
+                {
+                    var element = _driver.FindElement(By.XPath("//*[@id='shopping_cart_container']/a/span")).Displayed;
+                    isCartNumberDisplayed = true;
+                }
+                catch
+                {
+                    isCartNumberDisplayed = false;
+                }
+                Assert.AreEqual(buttonTitle, "ADD TO CART");
+                Assert.IsFalse(isCartNumberDisplayed);
+            }
         }
         public void RemoveProductAtIndexOf(int index)
         {

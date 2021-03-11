@@ -37,72 +37,34 @@ namespace SwagSauceTest.PageObjects
         {
             var loggedInTitle = _driver.FindElement(By.XPath("//*[@id='inventory_filter_container']/div")).GetAttribute("innerHTML");
             Assert.AreEqual(loggedInTitle, "Products");
-            //if (!isTestingLogin)
-            //{
-            //    burgerButton.Click();
-            //    System.Threading.Thread.Sleep(1000);
-            //    logOut.Click();
-            //    var loggedOut = _driver.FindElement(By.Id("login-button")).GetAttribute("value");
-            //    Assert.AreEqual(loggedOut, "LOGIN");
-            //}
-        }
-        public void InvalidLogin(string userName, string password)
-        {
-            txtForUserNameField.EnterText(userName);
-            txtForPasswordField.EnterText(password);
-            btnLogin.Submit();
-            var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
-            Assert.AreEqual(errorText.Text, "Epic sadface: Username and password do not match any user in this service");
-            _driver.Navigate().Refresh();
-        }
-        public void LoginWithoutAnyInfo()
-        {
-            btnLogin.Submit();
-            var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
-            Assert.AreEqual(errorText.Text, "Epic sadface: Username is required");
-            _driver.Navigate().Refresh();
-        }
-        public void LoginWithUsernameOnly(string userName)
-        {
-            txtForUserNameField.EnterText(userName);
-            btnLogin.Submit();
-            var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
-            Assert.AreEqual(errorText.Text, "Epic sadface: Password is required");
-            _driver.Navigate().Refresh();
-        }
-        public void LoginWithPasswordOnly(string password)
-        {
-            txtForPasswordField.EnterText(password);
-            btnLogin.Submit();
-            var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
-            Assert.AreEqual(errorText.Text, "Epic sadface: Username is required");
-            _driver.Navigate().Refresh();
-        }
-        public void LoginWithWrongUsername(string userName, string password)
-        {
-            txtForUserNameField.EnterText(userName);
-            txtForPasswordField.EnterText(password);
-            btnLogin.Submit();
-            var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
-            Assert.AreEqual(errorText.Text, "Epic sadface: Username and password do not match any user in this service");
-            _driver.Navigate().Refresh();
-        }
-        public void LoginWithWrongPassword(string userName, string password)
-        {
-            txtForUserNameField.EnterText(userName);
-            txtForPasswordField.EnterText(password);
-            btnLogin.Submit();
-            var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
-            Assert.AreEqual(errorText.Text, "Epic sadface: Username and password do not match any user in this service");
-            _driver.Navigate().Refresh();
         }
         public void LogOut()
         {
-            burgerButton.Click();
-            logOut.Click();
-            var loginPageText = _driver.FindElement(By.Id("login-button"));
-            Assert.AreEqual(loginPageText.Text, "Login");
-            _driver.Navigate().Refresh();
+            var loggedInTitle = _driver.FindElement(By.XPath("//*[@id='inventory_filter_container']/div")).GetAttribute("innerHTML");
+
+            if (loggedInTitle == "Products")
+            {
+                burgerButton.Click();
+                Task.Delay(1000).Wait();
+                logOut.Click();
+                var loggedOut = _driver.FindElement(By.Id("login-button")).GetAttribute("value");
+                Assert.AreEqual(loggedOut, "LOGIN");
+            }        
+        }
+        public void LoginWithWrongInformation()
+        {
+            var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
+            Assert.AreEqual(errorText.Text, "Epic sadface: Username and password do not match any user in this service");
+        }
+        public void LoginWithWrongPassword()
+        {
+            var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
+            Assert.AreEqual(errorText.Text, "Epic sadface: Password is required");
+        }
+        public void LoginWithoutAnyInfoErrorMsg()
+        {
+            var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));
+            Assert.AreEqual(errorText.Text, "Epic sadface: Username is required");
         }
     }
 }

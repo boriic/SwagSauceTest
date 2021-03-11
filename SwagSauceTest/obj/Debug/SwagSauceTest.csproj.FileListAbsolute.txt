@@ -33,6 +33,7 @@ C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\bin\Debug\TechTalk.SpecFlow
 C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\bin\Debug\Utf8Json.xml
 C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\bin\Debug\WebDriver.xml
 C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\bin\Debug\WebDriver.Support.xml
+C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.csprojAssemblyReference.cache
 C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.csproj.CoreCompileInputs.cache
 C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.csproj.CopyComplete
 C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.exe
