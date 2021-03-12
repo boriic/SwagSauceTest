@@ -13,7 +13,6 @@ namespace SwagSauceTest.PageObjects
     public class MainPageObject
     {
         private readonly IWebDriver _driver;
-        public Message Message = new Message();
         public MainPageObject(IWebDriver driver) => _driver = driver;
         public IWebElement addProducts => _driver.FindElement(By.XPath("//*[@id='inventory_container']/div/div[1]/div[3]/button"));
         public List<IWebElement> listAllProducts => _driver.FindElements(By.ClassName("inventory_item")).ToList();

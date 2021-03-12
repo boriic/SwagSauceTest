@@ -14,7 +14,6 @@ namespace SwagSauceTest.PageObjects
     {
         private readonly IWebDriver _driver;
         public LoginPageObject(IWebDriver driver) => _driver = driver;
-        public Message Message = new Message();
 
         //UI ELEMENTS
         public IWebElement txtForUserNameField => _driver.FindElement(By.Name("user-name"));

@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace SwagSauceTest.Messages
 {
-    public class Message
+    public static class Message
     {
         //LOGIN MESSAGES
-        public readonly string NoInfoLoginError = "Epic sadface: Username is required";
-        public readonly string WrongInfoLoginError = "Epic sadface: Username and password do not match any user in this service";
-        public readonly string NoPasswordLoginError = "Epic sadface: Password is required";
-        public readonly string Products = "Products";
-        public readonly string Login = "LOGIN";
+        public const string NoInfoLoginError = "Epic sadface: Username is required";
+        public const string WrongInfoLoginError = "Epic sadface: Username and password do not match any user in this service";
+        public const string NoPasswordLoginError = "Epic sadface: Password is required";
+        public const string Products = "Products";
+        public const string Login = "LOGIN";
 
         //PRODUCT PAGE MESSAGES
-        public readonly string AddToCart = "ADD TO CART";
-        public readonly string RemoveFromCart = "REMOVE";
+        public const string AddToCart = "ADD TO CART";
+        public const string RemoveFromCart = "REMOVE";
     }
 }
