@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SwagSauceTest.Messages;
 using SwagSauceTest.Methods;
 using System;
@@ -38,19 +39,20 @@ namespace SwagSauceTest.PageObjects
             var loggedInTitle = _driver.FindElement(By.XPath("//*[@id='inventory_filter_container']/div")).GetAttribute("innerHTML");
             Assert.AreEqual(loggedInTitle, Message.Products);
         }
-        public void LogOut()
-        {
-            var loggedInTitle = _driver.FindElement(By.XPath("//*[@id='inventory_filter_container']/div")).GetAttribute("innerHTML");
+        //public void LogOut()
+        //{
+        //    var loggedInTitle = _driver.FindElement(By.XPath("//*[@id='inventory_filter_container']/div")).GetAttribute("innerHTML");
 
-            if (loggedInTitle == Message.Products)
-            {
-                burgerButton.Click();
-                Task.Delay(1000).Wait();
-                logOut.Click();
-                var loggedOut = _driver.FindElement(By.Id("login-button")).GetAttribute("value");
-                Assert.AreEqual(loggedOut, Message.Login);
-            }        
-        }
+        //    if (loggedInTitle == Message.Products)
+        //    {
+        //        burgerButton.Click();
+        //        WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+        //        wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.Id("logout_sidebar_link")));
+        //        logOut.Click();
+        //        var loggedOut = _driver.FindElement(By.Id("login-button")).GetAttribute("value");
+        //        Assert.AreEqual(loggedOut, Message.Login);
+        //    }        
+        //}
         public void LoginWithWrongInformationError()
         {
             var errorText = _driver.FindElement(By.CssSelector("#login_button_container > div > form > h3"));

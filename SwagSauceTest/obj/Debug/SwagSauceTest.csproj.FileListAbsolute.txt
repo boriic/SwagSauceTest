@@ -38,3 +38,4 @@ C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.csp
 C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.csproj.CopyComplete
 C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.exe
 C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\obj\Debug\SwagSauceTest.pdb
+C:\Users\Filip\Documents\SwagSauceTest\SwagSauceTest\bin\Debug\SeleniumExtras.WaitHelpers.dll

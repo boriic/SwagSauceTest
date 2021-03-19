@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SwagSauceTest.Messages;
 using SwagSauceTest.Methods;
 using System;
@@ -41,7 +42,8 @@ namespace SwagSauceTest.PageObjects
                 if (buttonTitle == Message.AddToCart)
                 {
                     productButton.Click();
-                    Task.Delay(500).Wait();
+                    WebDriverWait wait = new WebDriverWait(_driver, TimeSpan.FromSeconds(10));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath("//*[@id='shopping_cart_container']/a/span")));
                     var cartNumber = int.Parse(_driver.FindElement(By.XPath("//*[@id='shopping_cart_container']/a/span")).Text);
                     if (cartNumber > 0)
                     {
