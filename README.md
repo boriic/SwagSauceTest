@@ -1,1 +1,1 @@
-# SwagSauceTest
+Task for job application for QA Automation
